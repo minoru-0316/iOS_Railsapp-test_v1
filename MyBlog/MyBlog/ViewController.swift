@@ -136,12 +136,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         print(blogList[indexPath.row].id)
         print(blogList[indexPath.row].createdAt)
         print(blogList[indexPath.row].memo)
-
+        
         cell.Label1?.text =  blogList[indexPath.row].title
         cell.Label2?.text =  "投稿ID: \(blogList[indexPath.row].id)"
         cell.Label3?.text =  "投稿日時" + blogList[indexPath.row].createdAt
         cell.memo?.text =  blogList[indexPath.row].memo
-
+        
         return cell
     }
     
@@ -153,8 +153,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         let idText = blogList[indexPath.row].id
         let createdAtText = blogList[indexPath.row].createdAt
         let memoText = blogList[indexPath.row].memo
-
-
+        
+        
         //      let blogData = blogList[indexPath.row]
         
         // セルの選択を解除
@@ -194,7 +194,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     @IBAction func addBtn(_ sender: Any) {
         performSegue(withIdentifier: "ThirdViewController", sender: nil)
-
+        
     }
     
     

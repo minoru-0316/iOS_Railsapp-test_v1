@@ -14,9 +14,9 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var SecondIdLabel: UILabel!
     @IBOutlet weak var SecondCreatedAtLabel: UILabel!
     
-
     
-
+    
+    
     
     //    Titleを格納するプロパティ
     var titleText: String?
