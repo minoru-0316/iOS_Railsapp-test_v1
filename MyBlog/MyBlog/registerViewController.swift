@@ -64,11 +64,16 @@ class registerViewController: UIViewController, UITextFieldDelegate {
         
         
 
-    //メッセージアラートの設定
+    //登録完了の処理
     let myAlert = UIAlertController(title:"Alert", message: "登録完了です！", preferredStyle: UIAlertController.Style.alert)
     let okAction = UIAlertAction(title:"OK", style: UIAlertAction.Style.default){
         action in self.dismiss(animated: true, completion: nil)
-    }
+        }
+        
+        let firstPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        self.present(firstPageViewController, animated: true, completion: nil)
+        
+        
     myAlert.addAction(okAction)
     self.present(myAlert, animated:true, completion: nil)
     }
