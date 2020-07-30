@@ -26,6 +26,7 @@ class registerViewController: UIViewController, UITextFieldDelegate {
         repeatPasswordTextField.delegate=self
         
     }
+    
     func alert(title:String, message:String) {
         alertController = UIAlertController(title: title, message:  message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -99,26 +100,22 @@ class registerViewController: UIViewController, UITextFieldDelegate {
                 print("result:\(resultData)")
                 
             })
-
+            
             task.resume()
         }catch{
             print("Error:\(error)")
             return
         }
         
-        //登録完了の処理
-        let myAlert = UIAlertController(title:"Alert", message: "登録完了です！", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title:"OK", style: UIAlertAction.Style.default){
-            action in self.dismiss(animated: true, completion: nil)
+        //登録完了のアラート
+        let myAlert = UIAlertController(title:"Alert", message: "ようこそ！登録完了です！", preferredStyle: UIAlertController.Style.alert)
+        
+        //ログインしたら、一覧ページへ遷移する
+        self.present(myAlert, animated: true, completion: {
+            self.performSegue(withIdentifier: "toNext", sender: nil)
+            
         }
-        
-        //一覧ページを表示
-        let firstPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-        self.present(firstPageViewController, animated: true, completion: nil)
-        
-        
-        myAlert.addAction(okAction)
-        self.present(myAlert, animated:true, completion: nil)
+        )
     }
     
     func displayMyAlertMessage(userMessage: String){
