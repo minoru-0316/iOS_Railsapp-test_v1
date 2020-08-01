@@ -85,11 +85,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let myAlert = UIAlertController(title: "Alert", message: "ログインしました。", preferredStyle: UIAlertController.Style.alert)
         
         //ログインしたら、一覧ページへ遷移する
-        self.present(myAlert, animated: true, completion: {
-            self.performSegue(withIdentifier: "toNext", sender: nil)
-            
-        }
-        )
+        //これがあると、検索が機能しなくなるのでコメントアウトした。
+        //        self.present(myAlert, animated: true, completion: {
+        //            self.performSegue(withIdentifier: "toNext", sender: nil)
+        //
+        //        }
+        //        )
+        
     }
     
     func displayMyAlertMessage(userMessage: String){

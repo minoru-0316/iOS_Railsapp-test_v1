@@ -40,7 +40,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
-        
+        print("--1111111--")
+
         if let searchWord = searchBar.text {
             print(searchWord)
             searchBlog(keyword: searchWord)

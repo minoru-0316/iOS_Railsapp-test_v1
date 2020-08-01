@@ -32,11 +32,11 @@ module Api
               end
       
               def create
-                post = Post.new(post_params)
-                if post.save
-                  render json: { status: 'SUCCESS', data: post }
+                @post = Post.new(post_params)
+                if @post.save
+                  render json: { status: 'SUCCESS', data: @post }
                 else
-                  render json: { status: 'ERROR', data: post.errors }
+                  render json: { status: 'ERROR', data: @post.errors }
                 end
               end
         
