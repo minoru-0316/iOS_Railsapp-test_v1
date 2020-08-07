@@ -3,8 +3,9 @@ module Api
     module V1
         class PostsController < ApplicationController
 
-            def index
+          # before_action :authenticate_user!
 
+            def index
                 @post = Post.all.search(params[:search])
                 # 日付のフォーマットを変更する一連の処理
                   # 1:投稿を格納する配列を用意する

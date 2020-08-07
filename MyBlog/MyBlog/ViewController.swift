@@ -92,7 +92,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
                             self.blogList.append(blog)
                             print("--------------")
                             print(blog)
-                            
                         }
                     }
                     self.tableView.reloadData()
