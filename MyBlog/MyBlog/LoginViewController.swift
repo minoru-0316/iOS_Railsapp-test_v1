@@ -84,14 +84,21 @@
                     print("----------------")
                     print(resultDataArray)
                     
-                    
-                    
-                    //statuscodeを取得し判定
+                    //statuscode、access-token、メールアドレスを取得
                     if let response = response as? HTTPURLResponse{
                         print("response: \(response)")
                         
+                        let userEmail = (response.allHeaderFields["uid"] as? String)!
+                        print("メアド取得（uid）")
+                        print(userEmail)
+                        
+                        let accessToken = (response.allHeaderFields["access-token"] as? String)!
+                        print("access-token取得")
+                        print(accessToken)
+                        
                         let statusCode = response.statusCode
-                        print("00response.statusCode = \(statusCode)")
+                        print("ステータスコード")
+                        print(statusCode)
                         if (statusCode == 401 || statusCode != 200) {
                             self.displayMyAlertMessage(userMessage: "ログイン情報が正しくありません。")
                             return
@@ -99,7 +106,9 @@
                         }
                     }
                 })
+                
                 task.resume()
+                
             }catch{
                 print("Error:\(error)")
                 displayMyAlertMessage(userMessage: "ログイン情報が正しくありません。")
