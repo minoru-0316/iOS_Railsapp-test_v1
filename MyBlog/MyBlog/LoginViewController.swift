@@ -88,14 +88,7 @@
                     if let response = response as? HTTPURLResponse{
                         print("response: \(response)")
                         
-                        let userEmail = (response.allHeaderFields["uid"] as? String)!
-                        print("メアド取得（uid）")
-                        print(userEmail)
-                        
-                        let accessToken = (response.allHeaderFields["access-token"] as? String)!
-                        print("access-token取得")
-                        print(accessToken)
-                        
+
                         let statusCode = response.statusCode
                         print("ステータスコード")
                         print(statusCode)
@@ -104,6 +97,19 @@
                             return
                                 print("ログインエラーです")
                         }
+
+                        
+                        let client = (response.allHeaderFields["client"] as? String)!
+                        print("client取得")
+                        print(client)
+                        
+                        let accessToken = (response.allHeaderFields["access-token"] as? String)!
+                        print("access-token取得")
+                        print(accessToken)
+                        
+                        let userEmail = (response.allHeaderFields["uid"] as? String)!
+                        print("メアド取得（uid）")
+                        print(userEmail)
                     }
                 })
                 
