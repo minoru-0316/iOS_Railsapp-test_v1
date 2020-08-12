@@ -98,15 +98,15 @@
                         print(statusCode)
                         if (statusCode == 401 || statusCode != 200) {
                             self.displayMyAlertMessage(userMessage: "ログイン情報が正しくありません。")
+                            print("ログインエラーです")
                             return
-                                print("ログインエラーです")
-                        } else {
-                            userDefaults.set(true, forKey: "LoginStatus")
-                            print("ログインしました")
-                            print(userDefaults)
-                            let loginStatus = userDefaults.bool(forKey: "LoginStatus")
-                            print(loginStatus)
                         }
+                        userDefaults.set(true, forKey: "LoginStatus")
+                        print("ログインしました")
+                        print(userDefaults)
+                        let loginStatus = userDefaults.bool(forKey: "LoginStatus")
+                        print(loginStatus)
+                        
                         
                         let client = (response.allHeaderFields["client"] as? String)!
                         print("client取得")
