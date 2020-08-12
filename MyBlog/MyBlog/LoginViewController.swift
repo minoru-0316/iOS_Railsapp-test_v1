@@ -40,6 +40,10 @@
             let userEmail = userEmailTextField.text
             let userPassword = userPasswordTextField.text
             
+            let userDefaults = UserDefaults.standard
+            userDefaults.register(defaults: ["LoginStatus": false])
+            print("ユーザーデフォルト")
+            print(userDefaults)
             
             
             print("00000")
@@ -88,7 +92,7 @@
                     if let response = response as? HTTPURLResponse{
                         print("response: \(response)")
                         
-
+                        
                         let statusCode = response.statusCode
                         print("ステータスコード")
                         print(statusCode)
@@ -96,8 +100,13 @@
                             self.displayMyAlertMessage(userMessage: "ログイン情報が正しくありません。")
                             return
                                 print("ログインエラーです")
+                        } else {
+                            userDefaults.set(true, forKey: "LoginStatus")
+                            print("ログインしました")
+                            print(userDefaults)
+                            let loginStatus = userDefaults.bool(forKey: "LoginStatus")
+                            print(loginStatus)
                         }
-
                         
                         let client = (response.allHeaderFields["client"] as? String)!
                         print("client取得")
