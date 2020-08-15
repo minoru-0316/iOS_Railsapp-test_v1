@@ -106,7 +106,8 @@
                         print(userDefaults)
                         let loginStatus = userDefaults.bool(forKey: "LoginStatus")
                         print(loginStatus)
-                        
+                        print(response.allHeaderFields)
+
                         
                         let client = (response.allHeaderFields["client"] as? String)!
                         print("client取得")
