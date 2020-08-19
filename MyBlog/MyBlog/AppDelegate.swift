@@ -18,13 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-                var accessToken = "00000"
+        //        var accessToken = "00000"
         
         //使用するStoryBoardのインスタンス化
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         
-        let url = URL(string: "http://localhost:3000/api/v1/posts")
+        let url = URL(string: "http://localhost:3000/auth/validate_token")
         let request = URLRequest(url: url!)
         let session = URLSession.shared
         session.dataTask(with: request) { (data, response, error) in
@@ -36,38 +36,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("statusCode: \(response.statusCode)")
                 print(String(data: data, encoding: String.Encoding.utf8) ?? "")
                 print("statusCode: \(response)")
-
-//                let accessToken = (response.allHeaderFields["access-token"] ?? "")
-//                print("access-token取得")
-//                print(accessToken)
-
-        
+                
+                //                let accessToken = (response.allHeaderFields["access-token"] ?? "")
+                //                print("access-token取得")
+                //                print(accessToken)
+                
                 
                 // UserDefaultsにbool型のKey"launchedBefore"を用意
-                let launchedBefore = UserDefaults.standard.bool(forKey: "accessToken")
+                //                let launchedBefore = UserDefaults.standard.bool(forKey: "accessToken")
+                let launchedBefore = UserDefaults.standard.string(forKey: "access-token")
+                print("launchedBeforeに入れたaccess-tokenの確認")
+                print("launchedBefore: \(launchedBefore)")
                 
-                // 初回起動ではない場合は、一覧画面に遷移する
-                if(launchedBefore != nil) {
-                    print("アクセストークン： \(String(describing: accessToken))")
-                    
-                } else {
-                    //起動を判定するlaunchedBeforeという論理型のKeyをUserDefaultsに用意
-                    UserDefaults.standard.set(true, forKey: "accessToken")
-                    
-                    //チュートリアル用のViewControllerのインスタンスを用意してwindowに渡す
-                    //            var storyboard = UIStoryboard(name: "login", bundle: nil)
-                    
-                    let loginVC = storyboard.instantiateViewController(withIdentifier: "login")
-                    print(loginVC)
-                    
-                    self.window = UIWindow(frame: UIScreen.main.bounds)
-                    self.window?.rootViewController = loginVC
-                    
-                    print("アクセストークンがない")
-                    
-                }
+                DispatchQueue.main.async {
+                    // 初回起動ではない場合は、一覧画面に遷移する
+                    if(launchedBefore != nil) {
+                        print(launchedBefore)
+                        
+                    } else {
+                        //起動を判定するlaunchedBeforeという論理型のKeyをUserDefaultsに用意
+                        //                    UserDefaults.standard.set(true, forKey: "accessToken")
+                        UserDefaults.standard.set(String(), forKey: "access-token")
+                        //チュートリアル用のViewControllerのインスタンスを用意してwindowに渡す
+                        //これを入れると エラーが出る　Could not find a storyboard named 'login' in bundle NSBundle
+                        //                        var storyboard = UIStoryboard(name: "login", bundle: nil)
+                        
+                        let loginVC = storyboard.instantiateViewController(withIdentifier: "login")as! LoginViewController
+                        print(loginVC)
+                        
+                        self.window = UIWindow(frame: UIScreen.main.bounds)
+                        self.window?.rootViewController = loginVC
+                        
+                        print("アクセストークンがない")
                     }
-                }.resume()
+                }
+            }
+        }
+        .resume()
         return true
     }
     
