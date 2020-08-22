@@ -17,14 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        
-        //        var accessToken = "00000"
-        
         //使用するStoryBoardのインスタンス化
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         
-        let url = URL(string: "http://localhost:3000/auth/validate_token")
+        let url = URL(string: "http://localhost:3000/auth/sign_in")
         let request = URLRequest(url: url!)
         let session = URLSession.shared
         session.dataTask(with: request) { (data, response, error) in
@@ -37,13 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(String(data: data, encoding: String.Encoding.utf8) ?? "")
                 print("statusCode: \(response)")
                 
-                //                let accessToken = (response.allHeaderFields["access-token"] ?? "")
-                //                print("access-token取得")
-                //                print(accessToken)
-                
-                
-                // UserDefaultsにbool型のKey"launchedBefore"を用意
-                //                let launchedBefore = UserDefaults.standard.bool(forKey: "accessToken")
+                // UserDefaultsにString型のKey"launchedBefore"を用意
                 let launchedBefore = UserDefaults.standard.string(forKey: "access-token")
                 print("launchedBeforeに入れたaccess-tokenの確認")
                 print("launchedBefore: \(launchedBefore)")
@@ -51,22 +42,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 DispatchQueue.main.async {
                     // 初回起動ではない場合は、一覧画面に遷移する
                     if(launchedBefore != nil) {
-                        print(launchedBefore)
-                        
+                        print("初回起動でない場合: \(launchedBefore)")
                     } else {
                         //起動を判定するlaunchedBeforeという論理型のKeyをUserDefaultsに用意
-                        //                    UserDefaults.standard.set(true, forKey: "accessToken")
-                        UserDefaults.standard.set(String(), forKey: "access-token")
-                        //チュートリアル用のViewControllerのインスタンスを用意してwindowに渡す
-                        //これを入れると エラーが出る　Could not find a storyboard named 'login' in bundle NSBundle
-                        //                        var storyboard = UIStoryboard(name: "login", bundle: nil)
+                        //                        UserDefaults.standard.set(true, forKey: "accessToken")
                         
                         let loginVC = storyboard.instantiateViewController(withIdentifier: "login")as! LoginViewController
                         print(loginVC)
-                        
                         self.window = UIWindow(frame: UIScreen.main.bounds)
                         self.window?.rootViewController = loginVC
-                        
+
                         print("アクセストークンがない")
                     }
                 }

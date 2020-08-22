@@ -102,25 +102,25 @@
                             return
                         }
                         //                        userDefaults.set(true, forKey: "LoginStatus")
-                        userDefaults.set(String(), forKey: "access-token")
+                        let accessToken = (response.allHeaderFields["access-token"] as? String)!
+                        print("access-token取得")
+                        print(accessToken)
+                        let client = (response.allHeaderFields["client"] as? String)!
+                        print("client取得")
+                        print(client)
+                        let userEmail = (response.allHeaderFields["uid"] as? String)!
+                        print("メアド取得（uid）")
+                        print(userEmail)
+                        
+                        userDefaults.set(accessToken, forKey: "access-token")
                         print("ログインしました")
                         print(userDefaults)
+                        
+                        
                         let loginStatus = userDefaults.bool(forKey: "LoginStatus")
                         print(loginStatus)
                         print(response.allHeaderFields)
                         
-                        
-                        let client = (response.allHeaderFields["client"] as? String)!
-                        print("client取得")
-                        print(client)
-                        
-                        let accessToken = (response.allHeaderFields["access-token"] as? String)!
-                        print("access-token取得")
-                        print(accessToken)
-                        
-                        let userEmail = (response.allHeaderFields["uid"] as? String)!
-                        print("メアド取得（uid）")
-                        print(userEmail)
                     }
                 })
                 
