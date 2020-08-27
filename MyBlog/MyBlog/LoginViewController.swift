@@ -46,7 +46,7 @@
             print(userDefaults)
             
             
-            print("00000")
+            print("入力された値を出力")
             print(userEmail)
             print(userPassword)
             
