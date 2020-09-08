@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         
-        let url = URL(string: "http://localhost:3000/auth/validate_token")
+        let url = URL(string: "http://localhost:3000/api/v1/posts")
         let request = URLRequest(url: url!)
         let session = URLSession.shared
         session.dataTask(with: request) { (data, response, error) in

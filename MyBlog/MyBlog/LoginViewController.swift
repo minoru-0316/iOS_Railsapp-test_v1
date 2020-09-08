@@ -101,6 +101,10 @@
                             print("ログインエラーです")
                             return
                         }
+//                        else if(statusCode == 200){
+//                            self.performSegue(withIdentifier: "secondSegue", sender: nil)
+//                            self.performSegue(withIdentifier: "loginsucceed", sender: nil)
+//                        }
                         //                        userDefaults.set(true, forKey: "LoginStatus")
                         let accessToken = (response.allHeaderFields["access-token"] as? String)!
                         print("access-token取得")
@@ -121,10 +125,13 @@
                         print(loginStatus)
                         print(response.allHeaderFields)
                         
+
+
                     }
                 })
                 
                 task.resume()
+
                 
             }catch{
                 print("Error:\(error)")
