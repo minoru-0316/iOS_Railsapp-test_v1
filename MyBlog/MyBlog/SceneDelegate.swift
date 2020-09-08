@@ -25,15 +25,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         session.dataTask(with: request) { (data, response, error) in
             if error == nil, let data = data, let response = response as? HTTPURLResponse {
                 
-//                // HTTPヘッダの取得
-//                print("HTTPヘッダの取得----------------")
-//                print("Content-Type: \(response.allHeaderFields["Content-Type"] ?? "")")
-//                print("Content-Type: \(response.allHeaderFields)")
+                //                // HTTPヘッダの取得
+                //                print("HTTPヘッダの取得----------------")
+                //                print("Content-Type: \(response.allHeaderFields["Content-Type"] ?? "")")
+                //                print("Content-Type: \(response.allHeaderFields)")
                 // HTTPステータスコードの取得
                 print("HTTPステータスコードの取得----------------")
                 print("statusCode: \(response.statusCode)")
-//                print(String(data: data, encoding: String.Encoding.utf8) ?? "")
-//                print("statusCode: \(response)")
+                //                print(String(data: data, encoding: String.Encoding.utf8) ?? "")
+                //                print("statusCode: \(response)")
                 
                 let launchedBefore = UserDefaults.standard.string(forKey: "access-token")
                 let statusCode = response.statusCode
@@ -92,7 +92,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-    
+
 }
 
 

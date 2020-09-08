@@ -111,10 +111,10 @@ class registerViewController: UIViewController, UITextFieldDelegate {
         let myAlert = UIAlertController(title:"Alert", message: "ようこそ！登録完了です！", preferredStyle: UIAlertController.Style.alert)
         
         //ログインしたら、一覧ページへ遷移する→不要のため、削除
-//        self.present(myAlert, animated: true, completion: {
-//            self.performSegue(withIdentifier: "toNext", sender: nil)
-//        }
-//        )
+        //        self.present(myAlert, animated: true, completion: {
+        //            self.performSegue(withIdentifier: "toNext", sender: nil)
+        //        }
+        //        )
     }
     
     func displayMyAlertMessage(userMessage: String){

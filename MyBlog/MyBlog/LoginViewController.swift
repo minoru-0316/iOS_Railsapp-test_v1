@@ -88,50 +88,56 @@
                     print("----------------")
                     print(resultDataArray)
                     
-                    //statuscode、access-token、メールアドレスを取得
-                    if let response = response as? HTTPURLResponse{
-                        print("response: \(response)")
+                    
+                    DispatchQueue.main.async {
                         
-                        
-                        let statusCode = response.statusCode
-                        print("ステータスコード")
-                        print(statusCode)
-                        if (statusCode == 401 || statusCode != 200) {
-                            self.displayMyAlertMessage(userMessage: "ログイン情報が正しくありません。")
-                            print("ログインエラーです")
-                            return
+                        //statuscode、access-token、メールアドレスを取得
+                        if let response = response as? HTTPURLResponse{
+                            print("response: \(response)")
+                            
+                            
+                            let statusCode = response.statusCode
+                            print("ステータスコード")
+                            print(statusCode)
+                            if (statusCode == 401 || statusCode != 200) {
+                                self.displayMyAlertMessage(userMessage: "ログイン情報が正しくありません。")
+                                print("ログインエラーです")
+                                return
+                            }
+                                //                        else if(statusCode == 200){
+                                //                            self.performSegue(withIdentifier: "secondSegue", sender: nil)
+                                //                            self.performSegue(withIdentifier: "loginsucceed", sender: nil)
+                                //                        }
+                                //                        userDefaults.set(true, forKey: "LoginStatus")
+                                
+                            else if(statusCode == 200){
+                                let accessToken = (response.allHeaderFields["access-token"] as? String)!
+                                print("access-token取得")
+                                print(accessToken)
+                                let client = (response.allHeaderFields["client"] as? String)!
+                                print("client取得")
+                                print(client)
+                                let userEmail = (response.allHeaderFields["uid"] as? String)!
+                                print("メアド取得（uid）")
+                                print(userEmail)
+                                
+                                userDefaults.set(accessToken, forKey: "access-token")
+                                print("ログインしました")
+                                print(userDefaults)
+                                
+                                
+                                let loginStatus = userDefaults.bool(forKey: "LoginStatus")
+                                print(loginStatus)
+                                print(response.allHeaderFields)
+                                
+                                let nextVC = self.storyboard?.instantiateViewController(identifier: "topPage")
+                                self.present(nextVC!, animated: true, completion: nil)
+                            }
                         }
-//                        else if(statusCode == 200){
-//                            self.performSegue(withIdentifier: "secondSegue", sender: nil)
-//                            self.performSegue(withIdentifier: "loginsucceed", sender: nil)
-//                        }
-                        //                        userDefaults.set(true, forKey: "LoginStatus")
-                        let accessToken = (response.allHeaderFields["access-token"] as? String)!
-                        print("access-token取得")
-                        print(accessToken)
-                        let client = (response.allHeaderFields["client"] as? String)!
-                        print("client取得")
-                        print(client)
-                        let userEmail = (response.allHeaderFields["uid"] as? String)!
-                        print("メアド取得（uid）")
-                        print(userEmail)
-                        
-                        userDefaults.set(accessToken, forKey: "access-token")
-                        print("ログインしました")
-                        print(userDefaults)
-                        
-                        
-                        let loginStatus = userDefaults.bool(forKey: "LoginStatus")
-                        print(loginStatus)
-                        print(response.allHeaderFields)
-                        
-
-
                     }
                 })
-                
                 task.resume()
-
+                
                 
             }catch{
                 print("Error:\(error)")
@@ -140,7 +146,7 @@
             }
             
             //ログイン完了のアラート
-            let myAlert = UIAlertController(title: "Alert", message: "ログインしました。", preferredStyle: UIAlertController.Style.alert)
+            //            let myAlert = UIAlertController(title: "Alert", message: "ログインしました。", preferredStyle: UIAlertController.Style.alert)
             
             //ログインしたら、一覧ページへ遷移する
             //これがあると、検索が機能しなくなるのでコメントアウトした。
@@ -149,6 +155,7 @@
             //
             //        }
             //        )
+            
             
         }
         
