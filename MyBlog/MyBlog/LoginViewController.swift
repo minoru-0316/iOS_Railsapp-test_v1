@@ -47,8 +47,8 @@
             
             
             print("入力された値を出力")
-            print(userEmail)
-            print(userPassword)
+            print(userEmail as Any)
+            print(userPassword as Any)
             
             //入力漏れがある場合
             if(userEmail == "" || userPassword == "") {
@@ -82,15 +82,15 @@
                 
                 let task:URLSessionDataTask = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {(data,response,error) -> Void in
                     let resultData = String(data: data!, encoding: .utf8)!
+                    print("idなどが入っているresultを出力するーーーーーーー")
                     print("result:\(resultData)")
                     
                     let resultDataArray: [String] = [resultData]
-                    print("----------------")
+                    print("--------000000--------")
                     print(resultDataArray)
                     
                     
                     DispatchQueue.main.async {
-                        
                         //statuscode、access-token、メールアドレスを取得
                         if let response = response as? HTTPURLResponse{
                             print("response: \(response)")
@@ -114,20 +114,26 @@
                                 let accessToken = (response.allHeaderFields["access-token"] as? String)!
                                 print("access-token取得")
                                 print(accessToken)
+                                
                                 let client = (response.allHeaderFields["client"] as? String)!
                                 print("client取得")
                                 print(client)
+                                
                                 let userEmail = (response.allHeaderFields["uid"] as? String)!
                                 print("メアド取得（uid）")
                                 print(userEmail)
                                 
+                                
                                 userDefaults.set(accessToken, forKey: "access-token")
+                                userDefaults.set(userEmail, forKey: "uid")
                                 print("ログインしました")
                                 print(userDefaults)
                                 
                                 
                                 let loginStatus = userDefaults.bool(forKey: "LoginStatus")
+                                print("loginStatus-------------")
                                 print(loginStatus)
+                                print("responseの中身全部------------")
                                 print(response.allHeaderFields)
                                 
                                 let nextVC = self.storyboard?.instantiateViewController(identifier: "topPage")

@@ -41,9 +41,9 @@ class registerViewController: UIViewController, UITextFieldDelegate {
         let repeatPassword = repeatPasswordTextField.text
         
         print("00000")
-        print(userEmail)
-        print(userPassword)
-        print(repeatPassword)
+        print(userEmail as Any)
+        print(userPassword as Any)
+        print(repeatPassword as Any)
         
         
         

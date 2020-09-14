@@ -21,8 +21,19 @@ class ThirdViewController:  UIViewController, UITextFieldDelegate {
         
         ThirdTxtFIeld.delegate = self
         print("新規投稿画面が開いた")
+        let launchedBefore2 = UserDefaults.standard.string(forKey: "uid")
+        print(launchedBefore2 as Any)
+        
+        //テスト処理：後で消すこと！！！！！！！！！！！！！！！！！！！！！！！！
+        self.userIdLabel.text = launchedBefore2
+        
+        
     }
     
+    
+    @IBOutlet weak var userIdLabel: UILabel!
+    @IBOutlet weak var ThirdMemoField: UITextField!
+
     
     @IBOutlet weak var ThirdTxtFIeld: UITextField!
     
@@ -34,9 +45,16 @@ class ThirdViewController:  UIViewController, UITextFieldDelegate {
         var params: [String: Any] = [:]
         
         // まずPOSTで送信したい情報をセット。
+        //　タイトル
         if let textFieldStr:String = ThirdTxtFIeld.text{
             params["title"] = textFieldStr
-            print("000000")
+            print("タイトルをparamsに格納ーーーーー")
+            print(params)
+        }
+        //　メモ
+        if let memoFieldStr:String = ThirdMemoField.text{
+            params["memo"] = memoFieldStr
+            print("メモをparamsに格納ーーーーー")
             print(params)
         }
         //参考URL-1: https://qiita.com/zakiyamaaaaa/items/4ccee2276d059dde23db

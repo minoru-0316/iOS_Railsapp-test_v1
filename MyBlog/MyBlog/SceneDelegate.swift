@@ -36,13 +36,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 //                print("statusCode: \(response)")
                 
                 let launchedBefore = UserDefaults.standard.string(forKey: "access-token")
+                let launchedBefore2 = UserDefaults.standard.string(forKey: "uid") //ユーザーIDが取れるようになったら差し替える。
                 let statusCode = response.statusCode
                 
                 // 初回起動ではない場合(access-tokenが存在し、且つ有効期間が切れてない)は、一覧画面に遷移する
                 DispatchQueue.main.async {
                     if(launchedBefore != nil && statusCode == 200) {
                         print("access-token--------")
-                        print(launchedBefore)
+                        print(launchedBefore as Any)
+                        print("Emai(uid)--------")
+                        print(launchedBefore2 as Any)
                     } else {
                         
                         self.window = UIWindow(windowScene: scene as! UIWindowScene)
@@ -92,7 +95,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-
+    
 }
 
 

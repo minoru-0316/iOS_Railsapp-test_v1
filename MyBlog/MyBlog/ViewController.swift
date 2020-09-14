@@ -23,6 +23,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         
         self.tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         self.tableView.estimatedRowHeight = 100
+        let launchedBefore = UserDefaults.standard.string(forKey: "access-token")
+        print(launchedBefore as Any)
+//        let launchedBefore2 = UserDefaults.standard.string(forKey: "uid")
+//        print(launchedBefore2)
+
         
     }
     
