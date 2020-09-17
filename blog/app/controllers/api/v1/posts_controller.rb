@@ -7,6 +7,7 @@ module Api
 
             def index
                 @post = Post.all.search(params[:search])
+
                 # 日付のフォーマットを変更する一連の処理
                   # 1:投稿を格納する配列を用意する
                   response_data = []
@@ -33,7 +34,8 @@ module Api
               end
       
               def create
-                @post = Post.new(post_params)
+                @post = Post.new(post_params)   
+                @post.user_id = current_user             
                 if @post.save
                   render json: { status: 'SUCCESS', data: @post }
                 else

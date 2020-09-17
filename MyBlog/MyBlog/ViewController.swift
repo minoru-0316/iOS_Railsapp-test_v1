@@ -26,9 +26,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         let launchedBefore = UserDefaults.standard.string(forKey: "access-token")
         print(launchedBefore as Any)
 //        let launchedBefore2 = UserDefaults.standard.string(forKey: "uid")
-//        print(launchedBefore2)
-
-        
+//        print(launchedBefore2)        
     }
     
     

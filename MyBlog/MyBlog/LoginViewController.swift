@@ -7,6 +7,8 @@
     //
     
     import UIKit
+    import SwiftyJSON
+    
     
     class LoginViewController: UIViewController, UITextFieldDelegate {
         
@@ -80,14 +82,19 @@
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
                 
+                print(request.httpBody)
+                
                 let task:URLSessionDataTask = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {(data,response,error) -> Void in
-                    let resultData = String(data: data!, encoding: .utf8)!
-                    print("idなどが入っているresultを出力するーーーーーーー")
-                    print("result:\(resultData)")
                     
-                    let resultDataArray: [String] = [resultData]
-                    print("--------000000--------")
-                    print(resultDataArray)
+                    //                    guard let data = data else {return}
+                    //                    do {
+                    //                        let json = try? JSON(data: data)
+                    //                        let currentUserID = json!["data"]["id"]
+                    //                        print("ユーザーID")
+                    //                        print(currentUserID)
+                    //                    } catch let jsonError{
+                    //                        print("jsonError", jsonError)
+                    //                    }
                     
                     
                     DispatchQueue.main.async {
@@ -124,11 +131,29 @@
                                 print(userEmail)
                                 
                                 
+                                guard let data = data else {return}
+                                do {
+                                    let json = try? JSON(data: data)
+                                    //                                    let currentUserID = json!["data"]["id"]
+                                    let jsonData = json!["data"]
+                                    print("ユーザーIDなどのjsonをす取得")
+                                    print(jsonData)
+                                    
+                                    let currentUserId = (jsonData["id"])
+                                    print(currentUserId)
+                                    
+//                                    userDefaults.set(currentUserId, forKey: "id")
+                                    
+                                } catch let jsonError{
+                                    print("jsonError", jsonError)
+                                }
+                                
                                 userDefaults.set(accessToken, forKey: "access-token")
                                 userDefaults.set(userEmail, forKey: "uid")
+                                print(accessToken)
+                                
                                 print("ログインしました")
                                 print(userDefaults)
-                                
                                 
                                 let loginStatus = userDefaults.bool(forKey: "LoginStatus")
                                 print("loginStatus-------------")
@@ -153,15 +178,6 @@
             
             //ログイン完了のアラート
             //            let myAlert = UIAlertController(title: "Alert", message: "ログインしました。", preferredStyle: UIAlertController.Style.alert)
-            
-            //ログインしたら、一覧ページへ遷移する
-            //これがあると、検索が機能しなくなるのでコメントアウトした。
-            //        self.present(myAlert, animated: true, completion: {
-            //            self.performSegue(withIdentifier: "toNext", sender: nil)
-            //
-            //        }
-            //        )
-            
             
         }
         

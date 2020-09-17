@@ -39,6 +39,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="投稿者ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJ1-hP-IqX">
+                                <rect key="frame" x="173" y="202" width="69" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -57,6 +64,7 @@
                         <outlet property="SecondCreatedAtLabel" destination="Wmp-mi-fSM" id="OBK-GR-q48"/>
                         <outlet property="SecondIdLabel" destination="57J-73-zH8" id="ACS-De-OSo"/>
                         <outlet property="SecondTitleLabel" destination="MWY-pH-bFq" id="D1l-m7-amx"/>
+                        <outlet property="SecondUserIdLabel" destination="zJ1-hP-IqX" id="Cb8-L2-CMA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6A-jU-qSc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

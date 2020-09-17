@@ -21,13 +21,14 @@ class ThirdViewController:  UIViewController, UITextFieldDelegate {
         
         ThirdTxtFIeld.delegate = self
         print("新規投稿画面が開いた")
-        let launchedBefore2 = UserDefaults.standard.string(forKey: "uid")
+        let launchedBefore2 = UserDefaults.standard.string(forKey: "currentUserId")
         print(launchedBefore2 as Any)
         
         //テスト処理：後で消すこと！！！！！！！！！！！！！！！！！！！！！！！！
         self.userIdLabel.text = launchedBefore2
-        
-        
+        print("投稿者のユーザーID")
+        print(launchedBefore2)
+
     }
     
     
