@@ -21,13 +21,6 @@ class ThirdViewController:  UIViewController, UITextFieldDelegate {
         
         ThirdTxtFIeld.delegate = self
         print("新規投稿画面が開いた")
-        let launchedBefore2 = UserDefaults.standard.string(forKey: "currentUserId")
-        print(launchedBefore2 as Any)
-        
-        //テスト処理：後で消すこと！！！！！！！！！！！！！！！！！！！！！！！！
-        self.userIdLabel.text = launchedBefore2
-        print("投稿者のユーザーID")
-        print(launchedBefore2)
 
     }
     
@@ -58,6 +51,19 @@ class ThirdViewController:  UIViewController, UITextFieldDelegate {
             print("メモをparamsに格納ーーーーー")
             print(params)
         }
+        
+
+        //　投稿者のuserId
+//        if let currentUserId = self.userIdLabel.text{
+//            params["user_id"] = Int(currentUserId)
+//            print("userIdをparamsに格納ーーーーー")
+//            print(params)
+//        }
+        let currentUser = UserDefaults.standard.integer(forKey: "id")
+            params["user_id"] = currentUser
+            print("userIdをparamsに格納ーーーーー")
+            print(params)
+        
         //参考URL-1: https://qiita.com/zakiyamaaaaa/items/4ccee2276d059dde23db
         
         let urlString = "http://localhost:3000/api/v1/posts"
@@ -74,6 +80,7 @@ class ThirdViewController:  UIViewController, UITextFieldDelegate {
             let task:URLSessionDataTask = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {(data,response,error) -> Void in
                 let resultData = String(data: data!, encoding: .utf8)!
                 print("result:\(resultData)")
+                print(type(of: resultData))
                 //                        print("response:\(response)")
                 
             })

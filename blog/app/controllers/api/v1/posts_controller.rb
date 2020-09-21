@@ -35,7 +35,7 @@ module Api
       
               def create
                 @post = Post.new(post_params)   
-                @post.user_id = current_user             
+                # @post.user_id = current_user             
                 if @post.save
                   render json: { status: 'SUCCESS', data: @post }
                 else

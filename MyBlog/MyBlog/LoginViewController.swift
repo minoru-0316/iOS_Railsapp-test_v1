@@ -103,6 +103,17 @@
                             print("response: \(response)")
                             
                             
+//                            struct ItemJson: Codable {
+//                                let id: Int?
+//                                let title: String?
+//                                let created_at: String?
+//                                let memo: String?
+//                            }
+//                            
+//                            struct ResultJson: Codable {
+//                                let data:[ItemJson]?
+//                            }
+                            
                             let statusCode = response.statusCode
                             print("ステータスコード")
                             print(statusCode)
@@ -139,10 +150,13 @@
                                     print("ユーザーIDなどのjsonをす取得")
                                     print(jsonData)
                                     
-                                    let currentUserId = (jsonData["id"])
+                                    let currentUserId = (jsonData["id"].int)
                                     print(currentUserId)
-                                    
-//                                    userDefaults.set(currentUserId, forKey: "id")
+                                    print(type(of: currentUserId))
+
+                                    userDefaults.set(currentUserId, forKey: "id")
+                                    print(currentUserId)
+                                    print(type(of: currentUserId))
                                     
                                 } catch let jsonError{
                                     print("jsonError", jsonError)
@@ -151,7 +165,8 @@
                                 userDefaults.set(accessToken, forKey: "access-token")
                                 userDefaults.set(userEmail, forKey: "uid")
                                 print(accessToken)
-                                
+
+
                                 print("ログインしました")
                                 print(userDefaults)
                                 

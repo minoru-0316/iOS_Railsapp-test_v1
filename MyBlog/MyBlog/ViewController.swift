@@ -25,8 +25,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
         self.tableView.estimatedRowHeight = 100
         let launchedBefore = UserDefaults.standard.string(forKey: "access-token")
         print(launchedBefore as Any)
-//        let launchedBefore2 = UserDefaults.standard.string(forKey: "uid")
-//        print(launchedBefore2)        
+        let launchedBefore2 = UserDefaults.standard.integer(forKey: "id")
+        print(launchedBefore2)
     }
     
     
@@ -172,6 +172,8 @@ class ViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate
             created_at: createdAtText,
             memo: memoText
         )
+        
+        
         // 別の画面に遷移
         self.performSegue(withIdentifier: "SecondViewController", sender: item)
         print(titleText,idText,createdAtText)
